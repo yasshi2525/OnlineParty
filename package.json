@@ -1,0 +1,38 @@
+{
+  "name": "online-party",
+  "private": true,
+  "version": "0.1.0",
+  "description": "",
+  "scripts": {
+    "build": "rimraf ./tmp ./script && tsc && akashic scan asset script",
+    "update": "akashic scan asset && akashic scan globalScripts",
+    "lint": "eslint -c .eslintrc.js \"src/**/*.ts\" --fix",
+    "start": "akashic serve -s atsumaru .",
+    "start-live": "akashic serve -s nicolive .",
+    "start-debug": "akashic-sandbox .",
+    "export-zip": "rimraf game.zip && akashic export zip -o game.zip -s",
+    "export-html": "rimraf game && akashic export html --atsumaru --output game",
+    "test": "jest"
+  },
+  "author": "yasshi2525",
+  "license": "MIT",
+  "devDependencies": {
+    "@akashic/akashic-cli": "~2.5.7",
+    "@akashic/akashic-engine": "~3.0.4",
+    "@akashic/akashic-sandbox": "~0.17.11",
+    "@akashic/headless-akashic": "~1.0.1",
+    "@types/jest": "~26.0.20",
+    "@types/node": "~14.14.25",
+    "@typescript-eslint/eslint-plugin": "~4.15.0",
+    "@typescript-eslint/parser": "~4.15.0",
+    "eslint": "~7.19.0",
+    "eslint-plugin-import": "~2.22.1",
+    "jest": "~26.6.3",
+    "rimraf": "~3.0.2",
+    "ts-jest": "~26.5.1",
+    "typescript": "~4.1.4"
+  },
+  "eslintIgnore": [
+    "/.eslintrc.js"
+  ]
+}
