@@ -35,8 +35,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "14"
-      - run: npm install -g @akashic/akashic-cli @akashic/akashic-sandbox
       - run: npm install
+      - run: npm run build
       - run: npm run export-html
       - name: Upload artifact
         uses: actions/upload-artifact@v1.0.0
