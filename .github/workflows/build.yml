@@ -1,0 +1,45 @@
+name: build
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    name: unit test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+      - run: npm install
+      - run: npm run lint
+      - run: npm run build
+      - name: test
+        uses: paambaati/codeclimate-action@v2.5.6
+        env:
+          CC_TEST_REPORTER_ID: f2e505c987f839909a9a93a9112438c80689f7aa33d58b1e570c7ec462abe40d
+        with:
+          coverageLocations: ./coverage/lcov.info:lcov
+          coverageCommand: npm test
+
+  archive:
+    needs: [test]
+    name: archive for niconico
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+      - run: npm install -g @akashic/akashic-cli @akashic/akashic-sandbox
+      - run: npm install
+      - run: npm run export-html
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: game
+          path: game
