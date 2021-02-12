@@ -36,6 +36,16 @@
 			"type": "script",
 			"path": "script/_bootstrap.js",
 			"global": true
+		},
+		"constants": {
+			"type": "script",
+			"path": "script/constants.js",
+			"global": true
+		},
+		"participant": {
+			"type": "script",
+			"path": "script/participant.js",
+			"global": true
 		}
 	},
 	"moduleMainScripts": {},
