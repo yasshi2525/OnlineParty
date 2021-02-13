@@ -24,7 +24,6 @@ export = (originalParam: g.GameMainParameterObject) => {
   });
   // セッションパラメーターを受け取ってゲームを開始します
   scene.onMessage.add((msg) => {
-    console.log(msg);
     if (msg.data && msg.data.type === "start" && msg.data.parameters) {
       param.sessionParameter = msg.data.parameters; // sessionParameterフィールドを追加
       if (msg.data.parameters.randomSeed != null) {

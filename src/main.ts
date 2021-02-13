@@ -15,17 +15,6 @@ export function main(param: GameMainParameterObject): void {
   // 市場コンテンツのランキングモードでは、g.game.vars.gameState.score の値をスコアとして扱います
   g.game.vars.gameState = { score: 0 };
   scene.onLoad.add(() => {
-    scene.onPointDownCapture.add(e => console.log({
-      type: e.type,
-      point: e.point,
-      pointerId: e.pointerId
-    }));
-    scene.onPointMoveCapture.add(e => console.log({
-      type: e.type,
-      point: e.point,
-      pointerId: e.pointerId,
-      prevDelta: e.prevDelta,
-    }));
     const mainLayer = new g.E({
       scene,
       tag: "メインレイヤ",

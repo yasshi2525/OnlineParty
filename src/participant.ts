@@ -24,17 +24,16 @@ export class Participant {
     let pointerID = -1;
     let isDragging = false;
     this.view.onPointDown.add(e => {
-      console.log("onDown");
       if (!isDragging) {
         isDragging = true;
         pointerID = e.pointerId;
       }
     });
     this.view.onPointMove.add(e => {
-      console.log("onMove");
       if (pointerID === e.pointerId) {
         this.view.x += e.prevDelta.x;
         this.view.y += e.prevDelta.y;
+        this.view.modified();
       }
     });
     this.view.onPointUp.add(e => {

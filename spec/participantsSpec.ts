@@ -31,7 +31,7 @@ describe("participants", () => {
     await context.destroy();
   });
 
-  it("マウスドラッグで移動する", async () => {
+  it("マウスドラッグで移動する", () => {
     expect(scene.children.length).toBe(3);
 
     const mainLayer = scene.children[0];
@@ -50,6 +50,50 @@ describe("participants", () => {
     context.step();
 
     client.sendPointMove(100, 100, 1);
+    context.step();
+
+    expect(participant.x).toBe(75);
+    expect(participant.y).toBe(75);
+  });
+
+  it("マウス再ドラッグで移動する", () => {
+    const participant = scene.children[0].children[0];
+
+    client.sendPointDown(500, 500, 1);
+    context.step();
+
+    client.sendPointMove(100, 100, 1);
+    context.step();
+
+    client.sendPointUp(100, 100, 1);
+    context.step();
+
+    client.sendPointDown(100, 100, 1);
+    context.step();
+
+    client.sendPointMove(300, 300, 1);
+    context.step();
+
+    client.sendPointUp(300, 300, 1);
+    context.step();
+
+    expect(participant.x).toBe(275);
+    expect(participant.y).toBe(275);
+  });
+
+  it("マルチタッチに反応しない", () => {
+    const participant = scene.children[0].children[0];
+
+    client.sendPointDown(500, 500, 1);
+    context.step();
+
+    client.sendPointMove(100, 100, 1);
+    context.step();
+
+    client.sendPointDown(100, 100, 2);
+    context.step();
+
+    client.sendPointMove(300, 300, 2);
     context.step();
 
     expect(participant.x).toBe(75);
